@@ -1,6 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
+import { format } from "date-fns"
 
 interface Message {
   _id: string
@@ -27,15 +28,13 @@ export default function ChatMessage({ message, isMine, senderName }: ChatMessage
       <div
         className={`max-w-[80%] rounded-2xl px-4 py-2 ${
           isMine
-            ? "bg-gradient-to-r from-amber-600 to-amber-500 text-white rounded-br-none"
-            : "bg-amber-800/50 text-amber-100 rounded-bl-none"
+            ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-br-none"
+            : "bg-indigo-800/50 text-indigo-100 rounded-bl-none"
         }`}
       >
-        {!isMine && <p className="text-xs font-medium text-amber-300 mb-1">{senderName}</p>}
+        {!isMine && <p className="text-xs font-medium text-indigo-300 mb-1">{senderName}</p>}
         <p className="text-sm">{message.content}</p>
-        <p className="text-xs text-right mt-1 opacity-70">
-          {new Date(message.timestamp).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
-        </p>
+        <p className="text-xs text-right mt-1 opacity-70">{format(new Date(message.timestamp), "h:mm a")}</p>
       </div>
     </motion.div>
   )

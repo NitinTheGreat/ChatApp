@@ -88,7 +88,7 @@ export default function VideoCallModal({ contact, onClose }: VideoCallModalProps
             canvas.height = 480
             const ctx = canvas.getContext("2d")
             if (ctx) {
-              ctx.fillStyle = "#7c2d12"
+              ctx.fillStyle = "#1e1b4b"
               ctx.fillRect(0, 0, canvas.width, canvas.height)
 
               // Add text
@@ -169,7 +169,7 @@ export default function VideoCallModal({ contact, onClose }: VideoCallModalProps
     >
       <div className="relative w-full max-w-4xl p-4">
         {/* Main video (remote) */}
-        <div className="relative rounded-lg overflow-hidden bg-amber-950 aspect-video">
+        <div className="relative rounded-lg overflow-hidden bg-indigo-950 aspect-video">
           {callStatus === "connecting" ? (
             <div className="absolute inset-0 flex flex-col items-center justify-center">
               <div className="w-24 h-24 rounded-full overflow-hidden mb-4">
@@ -180,26 +180,26 @@ export default function VideoCallModal({ contact, onClose }: VideoCallModalProps
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <div className="flex items-center justify-center w-full h-full bg-amber-600 text-white text-lg font-semibold">
+                  <div className="flex items-center justify-center w-full h-full bg-indigo-600 text-white text-lg font-semibold">
                     {contact.name.charAt(0)}
                   </div>
                 )}
               </div>
-              <h3 className="text-xl font-semibold text-amber-100">{contact.name}</h3>
-              <p className="text-amber-300">Connecting...</p>
+              <h3 className="text-xl font-semibold text-indigo-100">{contact.name}</h3>
+              <p className="text-indigo-300">Connecting...</p>
               <div className="mt-4 flex space-x-2">
                 <motion.div
-                  className="w-3 h-3 bg-amber-500 rounded-full"
+                  className="w-3 h-3 bg-indigo-500 rounded-full"
                   animate={{ scale: [1, 1.5, 1] }}
                   transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY }}
                 />
                 <motion.div
-                  className="w-3 h-3 bg-amber-500 rounded-full"
+                  className="w-3 h-3 bg-indigo-500 rounded-full"
                   animate={{ scale: [1, 1.5, 1] }}
                   transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY, delay: 0.2 }}
                 />
                 <motion.div
-                  className="w-3 h-3 bg-amber-500 rounded-full"
+                  className="w-3 h-3 bg-indigo-500 rounded-full"
                   animate={{ scale: [1, 1.5, 1] }}
                   transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY, delay: 0.4 }}
                 />
@@ -210,7 +210,7 @@ export default function VideoCallModal({ contact, onClose }: VideoCallModalProps
           )}
 
           {/* Local video (picture-in-picture) */}
-          <div className="absolute bottom-4 right-4 w-1/4 aspect-video rounded-lg overflow-hidden border-2 border-amber-600 shadow-lg">
+          <div className="absolute bottom-4 right-4 w-1/4 aspect-video rounded-lg overflow-hidden border-2 border-indigo-600 shadow-lg">
             <video
               ref={localVideoRef}
               autoPlay
@@ -219,10 +219,10 @@ export default function VideoCallModal({ contact, onClose }: VideoCallModalProps
               className={`w-full h-full object-cover ${isVideoOff ? "hidden" : ""}`}
             />
             {isVideoOff && (
-              <div className="absolute inset-0 bg-amber-900 flex items-center justify-center">
+              <div className="absolute inset-0 bg-indigo-900 flex items-center justify-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6 text-amber-300"
+                  className="w-6 h-6 text-indigo-300"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -242,7 +242,7 @@ export default function VideoCallModal({ contact, onClose }: VideoCallModalProps
         {/* Call controls */}
         <div className="flex items-center justify-center mt-4 space-x-4">
           <button
-            className={`p-4 rounded-full ${isMuted ? "bg-amber-700 text-white" : "bg-amber-800/50 text-amber-200"}`}
+            className={`p-4 rounded-full ${isMuted ? "bg-indigo-700 text-white" : "bg-indigo-800/50 text-indigo-200"}`}
             onClick={toggleMute}
           >
             {isMuted ? (
@@ -302,7 +302,7 @@ export default function VideoCallModal({ contact, onClose }: VideoCallModalProps
           </button>
 
           <button
-            className={`p-4 rounded-full ${isVideoOff ? "bg-amber-700 text-white" : "bg-amber-800/50 text-amber-200"}`}
+            className={`p-4 rounded-full ${isVideoOff ? "bg-indigo-700 text-white" : "bg-indigo-800/50 text-indigo-200"}`}
             onClick={toggleVideo}
           >
             {isVideoOff ? (

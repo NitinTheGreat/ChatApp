@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { motion } from "framer-motion"
 import Link from "next/link"
+import { format } from "date-fns"
 
 interface Contact {
   _id: string
@@ -54,12 +55,12 @@ export default function ChatSidebar({
 
   return (
     <div className="flex flex-col h-full">
-      <div className="flex items-center justify-between p-4 border-b border-amber-800/30">
-        <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-amber-400">
+      <div className="flex items-center justify-between p-4 border-b border-indigo-800/30">
+        <h1 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 to-purple-300">
           Conclave
         </h1>
         <div className="flex items-center">
-          <button className="p-2 mr-2 text-amber-200 rounded-full hover:bg-amber-800/30" title="Add Contact">
+          <button className="p-2 mr-2 text-indigo-200 rounded-full hover:bg-indigo-800/30" title="Add Contact">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="w-6 h-6"
@@ -76,7 +77,7 @@ export default function ChatSidebar({
             </svg>
           </button>
           <div className="relative group">
-            <button className="p-2 text-amber-200 rounded-full hover:bg-amber-800/30" title="Settings">
+            <button className="p-2 text-indigo-200 rounded-full hover:bg-indigo-800/30" title="Settings">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-6 h-6"
@@ -98,24 +99,24 @@ export default function ChatSidebar({
                 />
               </svg>
             </button>
-            <div className="absolute right-0 z-10 invisible w-48 mt-2 origin-top-right bg-amber-900 border border-amber-800/50 rounded-md shadow-lg opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300">
+            <div className="absolute right-0 z-10 invisible w-48 mt-2 origin-top-right bg-indigo-900 border border-indigo-800/50 rounded-md shadow-lg opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-300">
               <div className="py-1">
-                <Link href="/profile" className="block px-4 py-2 text-sm text-amber-200 hover:bg-amber-800/50">
+                <Link href="/profile" className="block px-4 py-2 text-sm text-indigo-200 hover:bg-indigo-800/50">
                   Profile
                 </Link>
-                <Link href="/settings" className="block px-4 py-2 text-sm text-amber-200 hover:bg-amber-800/50">
+                <Link href="/settings" className="block px-4 py-2 text-sm text-indigo-200 hover:bg-indigo-800/50">
                   Settings
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="block w-full px-4 py-2 text-sm text-left text-amber-200 hover:bg-amber-800/50"
+                  className="block w-full px-4 py-2 text-sm text-left text-indigo-200 hover:bg-indigo-800/50"
                 >
                   Logout
                 </button>
               </div>
             </div>
           </div>
-          <button className="p-2 ml-2 text-amber-200 rounded-full hover:bg-amber-800/30 md:hidden" onClick={onClose}>
+          <button className="p-2 ml-2 text-indigo-200 rounded-full hover:bg-indigo-800/30 md:hidden" onClick={onClose}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="w-6 h-6"
@@ -133,7 +134,7 @@ export default function ChatSidebar({
         <div className="relative">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="absolute w-5 h-5 text-amber-400 left-3 top-1/2 transform -translate-y-1/2"
+            className="absolute w-5 h-5 text-indigo-400 left-3 top-1/2 transform -translate-y-1/2"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -159,7 +160,7 @@ export default function ChatSidebar({
         <div className="grid grid-cols-2 gap-1 px-4 mb-2">
           <button
             className={`py-2 text-center rounded-lg transition-colors ${
-              activeTab === "chats" ? "bg-amber-700/50 text-amber-100" : "text-amber-300 hover:bg-amber-800/30"
+              activeTab === "chats" ? "bg-indigo-700/50 text-indigo-100" : "text-indigo-300 hover:bg-indigo-800/30"
             }`}
             onClick={() => setActiveTab("chats")}
           >
@@ -167,7 +168,7 @@ export default function ChatSidebar({
           </button>
           <button
             className={`py-2 text-center rounded-lg transition-colors ${
-              activeTab === "calls" ? "bg-amber-700/50 text-amber-100" : "text-amber-300 hover:bg-amber-800/30"
+              activeTab === "calls" ? "bg-indigo-700/50 text-indigo-100" : "text-indigo-300 hover:bg-indigo-800/30"
             }`}
             onClick={() => setActiveTab("calls")}
           >
@@ -178,7 +179,7 @@ export default function ChatSidebar({
         {activeTab === "chats" ? (
           <div className="flex-1 overflow-y-auto p-2">
             {filteredContacts.length === 0 ? (
-              <div className="flex flex-col items-center justify-center h-full text-amber-300">
+              <div className="flex flex-col items-center justify-center h-full text-indigo-300">
                 <p>No contacts found</p>
               </div>
             ) : (
@@ -190,7 +191,7 @@ export default function ChatSidebar({
                     whileTap={{ scale: 0.98 }}
                     onClick={() => setActiveContact(contact)}
                     className={`flex items-center p-3 rounded-lg cursor-pointer ${
-                      activeContact?._id === contact._id ? "bg-amber-800/50" : "hover:bg-amber-800/30"
+                      activeContact?._id === contact._id ? "bg-indigo-800/50" : "hover:bg-indigo-800/30"
                     }`}
                   >
                     <div className="relative">
@@ -202,13 +203,13 @@ export default function ChatSidebar({
                             className="w-full h-full object-cover"
                           />
                         ) : (
-                          <div className="flex items-center justify-center w-full h-full bg-amber-600 text-white text-lg font-semibold">
+                          <div className="flex items-center justify-center w-full h-full bg-indigo-600 text-white text-lg font-semibold">
                             {contact.name.charAt(0)}
                           </div>
                         )}
                       </div>
                       <span
-                        className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-amber-900 ${
+                        className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-indigo-900 ${
                           contact.status === "online"
                             ? "bg-green-500"
                             : contact.status === "away"
@@ -220,16 +221,13 @@ export default function ChatSidebar({
                     <div className="ml-3 flex-1 min-w-0">
                       <div className="flex justify-between">
                         <h3 className="font-medium truncate">{contact.name}</h3>
-                        <span className="text-xs text-amber-400 whitespace-nowrap">
+                        <span className="text-xs text-indigo-400 whitespace-nowrap">
                           {contact.lastMessage?.timestamp
-                            ? new Date(contact.lastMessage.timestamp).toLocaleTimeString([], {
-                                hour: "2-digit",
-                                minute: "2-digit",
-                              })
-                            : new Date(contact.lastSeen).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })}
+                            ? format(new Date(contact.lastMessage.timestamp), "h:mm a")
+                            : format(new Date(contact.lastSeen), "h:mm a")}
                         </span>
                       </div>
-                      <p className="text-sm text-amber-300 truncate">
+                      <p className="text-sm text-indigo-300 truncate">
                         {contact.lastMessage?.content || (contact.status === "online" ? "Online" : "Offline")}
                       </p>
                     </div>
@@ -240,7 +238,7 @@ export default function ChatSidebar({
           </div>
         ) : (
           <div className="flex-1 overflow-y-auto p-2">
-            <div className="flex flex-col items-center justify-center h-full text-amber-300">
+            <div className="flex flex-col items-center justify-center h-full text-indigo-300">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="w-16 h-16 mb-4 opacity-50"
@@ -262,7 +260,7 @@ export default function ChatSidebar({
       </div>
 
       {/* User profile at bottom */}
-      <div className="p-4 border-t border-amber-800/30">
+      <div className="p-4 border-t border-indigo-800/30">
         <div className="flex items-center">
           <div className="w-10 h-10 rounded-full overflow-hidden mr-3">
             {currentUser.avatar ? (
@@ -272,14 +270,14 @@ export default function ChatSidebar({
                 className="w-full h-full object-cover"
               />
             ) : (
-              <div className="flex items-center justify-center w-full h-full bg-amber-600 text-white text-lg font-semibold">
+              <div className="flex items-center justify-center w-full h-full bg-indigo-600 text-white text-lg font-semibold">
                 {currentUser.name.charAt(0)}
               </div>
             )}
           </div>
           <div className="flex-1 min-w-0">
             <h3 className="font-medium truncate">{currentUser.name}</h3>
-            <p className="text-xs text-amber-300 truncate">{currentUser.email}</p>
+            <p className="text-xs text-indigo-300 truncate">{currentUser.email}</p>
           </div>
         </div>
       </div>
